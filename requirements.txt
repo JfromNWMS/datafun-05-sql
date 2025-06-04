@@ -108,7 +108,7 @@ requests
 # ESSENTIAL TOOLS
 # ======================================================
 # Easy access to modern Excel files (*.xlsx)
-openpyxl
+# openpyxl
 
 
 # ======================================================
@@ -131,4 +131,4 @@ matplotlib  # the foundation
 seaborn     # built on top of matplotlib
 
 # general-purpose interactivity library
-ipywidgets  
+# ipywidgets  
