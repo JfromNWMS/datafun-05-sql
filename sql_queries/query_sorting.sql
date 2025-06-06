@@ -1,5 +1,5 @@
-SELECT a.last, MAX(b.year_published) AS year_published
+SELECT a.last_name, MAX(b.year_published) AS last_year_published
 FROM authors a
 LEFT JOIN books b ON a.author_id = b.author_id
-GROUP BY a.last
-ORDER BY year_published DESC;
+GROUP BY a.last_name
+ORDER BY last_year_published DESC;

@@ -1,5 +1,5 @@
 -- Insert authors data
-INSERT INTO authors (author_id, first, last)
+INSERT INTO authors (author_id, first_name, last_name)
 VALUES
     ('10f88232-1ae7-4d88-a6a2-dfcebb22a596', 'Harper', 'Lee'),
     ('c3a47e85-2a6b-4196-a7a8-8b55d8fc1f70', 'George', 'Orwell'),

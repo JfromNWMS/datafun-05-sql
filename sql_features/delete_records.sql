@@ -1,2 +1,2 @@
 DELETE FROM authors
-WHERE first = 'Harper';
+WHERE first_name = 'Harper';

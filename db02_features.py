@@ -3,7 +3,6 @@ from db01_setup import execute_sql
 
 
 def main() -> None:
-
     for file_path in Path("sql_features").iterdir():
         try:
             execute_sql(file_path)

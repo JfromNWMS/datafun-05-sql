@@ -1,8 +1,7 @@
 CREATE TABLE authors (
     author_id TEXT PRIMARY KEY,
-    first TEXT,
-    last TEXT,
-    year INTEGER
+    first_name TEXT,
+    last_name TEXT
 );
 
 CREATE TABLE books (

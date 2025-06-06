@@ -1,9 +1,21 @@
 import sqlite3
-import pandas as pd
 from pathlib import Path
+import pandas as pd
 
-# Define the database file in the current root project directory
-db_file = Path("data", "project.sqlite3")
+# Define the database directory in the current root project directory
+db_dir = Path("data")
+# Create the database directory if it does not exist
+db_dir.mkdir(exist_ok = True)
+# Define the database file in the database directory
+db_file = db_dir.joinpath("project.sqlite3")
+# Define a dictionary for execute_sql() messaging
+message_dict: dict = {
+  '01_drop_tables.sql': ["Tables dropped successfully.", "Error dropping tables: "],
+  '02_create_tables.sql': ["Tables created successfully.", "Error creating tables: "],
+  '03_insert_records.sql': ["Records inserted successfully.", "Error inserting records: "],
+  'delete_records.sql': ["Record deleted successfully.", "Error deleting record: "],
+  'update_records.sql': ["Record updated successfully.", "Error updating record: "],
+}
 
 
 def create_database() -> None:
@@ -35,45 +47,39 @@ def insert_data_from_csv() -> None:
         print("Error inserting data:", e)
 
 
-message_dict: dict = {
-  '01_drop_tables.sql': ["Tables dropped successfully.", "Error dropping tables:"],
-  '02_create_tables.sql': ["Tables created successfully.", "Error creating tables:"],
-  '03_insert_records.sql': ["Records inserted successfully.", "Error inserting records:"],
-  'delete_records.sql': ["Record deleted successfully.", "Error deleting record:"],
-  'update_records.sql': ["Record updated successfully.", "Error updating record:"],
-  'query_aggregation.sql': ["Query ran successfully.", "Error running query:"],
-  'default': ["Script ran successfully.", "Error running script:"]
-}
-
-
 def execute_sql(sql_file: Path) -> None:
+    """Function takes in mandatory arg pathlib.Path object for a SQL script file and
+    and executes the script in the database. """
+    message = message_dict.get(sql_file.name) or [f"{sql_file} ran successfully.", f"Error running {sql_file}: "]
     try:
         with sqlite3.connect(db_file) as conn:
             with open(sql_file, "r") as file:
                 sql_script = file.read()
             conn.executescript(sql_script)
-            print(message_dict.get(sql_file.name, message_dict['default'])[0])
+            print(message[0])
     except sqlite3.Error as e:
-        print(message_dict.get(sql_file.name, message_dict['default'])[1], e)
+        print(message[1], e)
         
 
 def query_sql(sql_file: Path) -> pd.DataFrame:
+    """Function takes in mandatory arg pathlib.Path object for a query SQL script file,
+    executes the script in the database, and then returns a pd.DataFrame with the results. """
     try:
         with sqlite3.connect(db_file) as conn:
             with open(sql_file, "r") as file:
                 sql_script = file.read()
             query_return: pd.DataFrame = pd.read_sql(sql_script, conn)
-            print(message_dict.get(sql_file.name, message_dict['default'])[0])
+            print(f"{sql_file.name} ran successfully.\n")
             return query_return
     except (sqlite3.Error, pd.errors.EmptyDataError, FileNotFoundError) as e:
-        print(message_dict.get(sql_file.name, message_dict['default'])[1], e)
+        print(f"{sql_file.name} encountered Error: {e}\n")
         return pd.DataFrame()
+    
 
 def main():
     create_database()
     execute_sql(Path('sql_create', '01_drop_tables.sql'))
     execute_sql(Path('sql_create', '02_create_tables.sql'))
-    #insert_data_from_csv()
     execute_sql(Path('sql_create', '03_insert_records.sql'))
 
 

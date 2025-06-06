@@ -4,11 +4,14 @@ from db01_setup import query_sql
 
 
 def main() -> None:
-    print(query_sql(Path('sql_queries', 'query_aggregation.sql')).iloc[0,0])
-    print(query_sql(Path('sql_queries', 'query_filter.sql')))
-    print(query_sql(Path('sql_queries', 'query_sorting.sql')))
-    print(query_sql(Path('sql_queries', 'query_group_by.sql')))
-    #files = [file_name for file_name in ]
+    for file_path in Path("sql_queries").iterdir():
+        try:
+            if file_path.name == "query_aggregation.sql":
+                print(query_sql(file_path).iloc[0,0],'\n')    
+            else:
+                print(query_sql(file_path), '\n')
+        except Exception as e:
+            print(f"Error executing {file_path}: {e}\n")
 
 
 if __name__ == "__main__":
