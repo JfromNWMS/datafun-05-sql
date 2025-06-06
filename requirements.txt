@@ -1,7 +1,3 @@
-# requirements.txt - list all the packages the project needs
-# Ignore hashes (#) - they are just used to create comments.
-# Hashes will be ignored when we install packages using this file. 
-
 # ======================================================
 # STEP A - CREATE A LOCAL PROJECT VIRTUAL ENV (.venv)
 # ======================================================
@@ -98,37 +94,9 @@ pip
 setuptools
 wheel
 
-# Easy logging for monitoring code execution
-loguru
-
-# Making web requests
-requests
-
-# ======================================================
-# ESSENTIAL TOOLS
-# ======================================================
-# Easy access to modern Excel files (*.xlsx)
-# openpyxl
-
-
-# ======================================================
-# SQL DATABASES
-# ======================================================
-
-# sqlite3 is not needed as an external package.
-# It is included in Python's standard library.
-
 # ======================================================
 # DATA PROCESSING & ANALYSIS
 # ======================================================
 
 # Fundamental data manipulation and analysis tools
-numpy
 pandas
-
-# Data visualization libraries
-matplotlib  # the foundation
-seaborn     # built on top of matplotlib
-
-# general-purpose interactivity library
-# ipywidgets  
