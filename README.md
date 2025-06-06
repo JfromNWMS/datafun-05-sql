@@ -1,6 +1,6 @@
 # Project datafun-05-sql
 ## Author
-[Jordan](httpls://github.com/JfromNWMS)
+*    [Jordan](httpls://github.com/JfromNWMS)
 
 ## Overview
 
