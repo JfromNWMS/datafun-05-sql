@@ -1,6 +1,8 @@
 # Project datafun-05-sql
 ## Author
 *    [Jordan](httpls://github.com/JfromNWMS)
+  
+---
 
 ## Overview
 
@@ -9,7 +11,7 @@ The project involves creating and managing a database, building a schema, and pe
 
 This project contains three modules that utilize four directories within the root directory fo the project.  Description of the modules and their working directories is as follows:
 
-### db01_setup.py
+*    ### db01_setup.py
 
 Contained in this module are four functions.  create_database() opens and closes a connection to the database in the data directory to ensure the databases existence.  insert_data_from_csv() utilizes pandas to read author.csv and book.csv in the data directory located within the project root directory and inserts the records from the CSV files into the database.  execute_sql() takes in a mandatory pathlib.Path object, reads the SQL file from the given path, and then executes the script in the database.  query_sql() takes in a mandatory pathlib.Path object, reads the SQL file from the given path, executes the the SQL script from the SQL file in the database, and then returns a pandas.DataFrame with the results of the SQL script execution. 
 
