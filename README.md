@@ -1,6 +1,6 @@
 # Project datafun-05-sql
 ## Author
-*    [Jordan](httpls://github.com/JfromNWMS)
+[Jordan](httpls://github.com/JfromNWMS)
   
 ---
 
@@ -11,15 +11,15 @@ The project involves creating and managing a database, building a schema, and pe
 
 This project contains three modules that utilize four directories within the root directory fo the project.  Description of the modules and their working directories is as follows:
 
-*    ### db01_setup.py
+### db01_setup.py
 
 Contained in this module are four functions.  create_database() opens and closes a connection to the database in the data directory to ensure the databases existence.  insert_data_from_csv() utilizes pandas to read author.csv and book.csv in the data directory located within the project root directory and inserts the records from the CSV files into the database.  execute_sql() takes in a mandatory pathlib.Path object, reads the SQL file from the given path, and then executes the script in the database.  query_sql() takes in a mandatory pathlib.Path object, reads the SQL file from the given path, executes the the SQL script from the SQL file in the database, and then returns a pandas.DataFrame with the results of the SQL script execution. 
 
 The main() function of db01_setup calls execute_sql() on all files in the sql_create directory.  Contained within the sql_create directory are three SQL script files whose descriptions are as follows:  
 
-01_drop_tables.sql drops the authors and books tables from the database.  
+*    01_drop_tables.sql drops the authors and books tables from the database.  
 
-02_create_tables.sql creates the authors and books tables in the database following the schema:
+*    02_create_tables.sql creates the authors and books tables in the database following the schema:
 
 CREATE TABLE authors (
     author_id TEXT PRIMARY KEY,
@@ -35,7 +35,7 @@ CREATE TABLE books (
     FOREIGN KEY (author_id) REFERENCES authors(author_id)
 );
 
-02_insert_records.sql inserts 10 records into each of the authors and books tables of the database following the schema above.
+*    03_insert_records.sql inserts 10 records into each of the authors and books tables of the database following the schema above.
 
 After installing dependencies from requiredments.txt execute "PS> py db01_setup.py" in a powershell terminal to run the file which will create the database if it doesn't exist, drop existing authors and books tables, create tables for authors and books, and then insert records for the authors and books tables.  See requirements.txt for instructions on how to set up a virtual environment for the project and how to install dependencies in the virtual environment.
 
