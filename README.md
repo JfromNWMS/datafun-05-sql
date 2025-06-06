@@ -1,7 +1,6 @@
 # Project datafun-05-sql
-## Author
-[Jordan](httpls://github.com/JfromNWMS)
-  
+## Author: Jordan
+
 ---
 
 ## Overview
@@ -17,9 +16,9 @@ Contained in this module are four functions.  create_database() opens and closes
 
 The main() function of db01_setup calls execute_sql() on all files in the sql_create directory.  Contained within the sql_create directory are three SQL script files whose descriptions are as follows:  
 
-*    01_drop_tables.sql drops the authors and books tables from the database.  
+01_drop_tables.sql drops the authors and books tables from the database.  
 
-*    02_create_tables.sql creates the authors and books tables in the database following the schema:
+02_create_tables.sql creates the authors and books tables in the database following the schema:
 
 CREATE TABLE authors (
     author_id TEXT PRIMARY KEY,
@@ -35,7 +34,7 @@ CREATE TABLE books (
     FOREIGN KEY (author_id) REFERENCES authors(author_id)
 );
 
-*    03_insert_records.sql inserts 10 records into each of the authors and books tables of the database following the schema above.
+03_insert_records.sql inserts 10 records into each of the authors and books tables of the database following the schema above.
 
 After installing dependencies from requiredments.txt execute "PS> py db01_setup.py" in a powershell terminal to run the file which will create the database if it doesn't exist, drop existing authors and books tables, create tables for authors and books, and then insert records for the authors and books tables.  See requirements.txt for instructions on how to set up a virtual environment for the project and how to install dependencies in the virtual environment.
 
